@@ -14,8 +14,7 @@ class ProductsController < ApplicationController
                               :by_derivation,
                               :by_name)
 
-    # index_render_json(@products, ::ProductSerializer, 'products')
-    render template: "products/index"
+    index_render_json(@products, ::ProductSerializer, 'products')
   end
 
   # GET /products/1

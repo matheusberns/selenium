@@ -2,18 +2,19 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_26_195642) do
+ActiveRecord::Schema.define(version: 2021_01_06_024951) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "uuid-ossp"
 
   create_table "products", force: :cascade do |t|
     t.string "name", limit: 255, null: false
@@ -21,16 +22,18 @@ ActiveRecord::Schema.define(version: 2020_12_26_195642) do
     t.text "description", null: false
     t.integer "derivation", null: false
     t.float "price", null: false
+    t.uuid "uuid", default: -> { "uuid_generate_v4()" }
+    t.boolean "active", default: true, null: false
+    t.datetime "deleted_at"
     t.bigint "created_by_id"
     t.bigint "updated_by_id"
-    t.boolean "active", default: true
-    t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["active"], name: "index_products_on_active"
     t.index ["created_by_id"], name: "index_products_on_created_by_id"
     t.index ["deleted_at"], name: "index_products_on_deleted_at"
     t.index ["updated_by_id"], name: "index_products_on_updated_by_id"
+    t.index ["uuid"], name: "index_products_on_uuid"
   end
 
   create_table "users", force: :cascade do |t|

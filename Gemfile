@@ -1,71 +1,79 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
+git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.6.5'
+ruby '2.7.1'
 
-gem 'rails', '5.2.4.3'
+# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'rails', '~> 6.0.3.2'
+# Use sqlite3 as the database for Active Record
 gem 'pg'
 
+gem "paperclip", git: "git://github.com/thoughtbot/paperclip.git"
+
+# Use Puma as the app server
+gem 'puma', '~> 3.11'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
+# Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
+gem 'webpacker', '~> 4.0'
+# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
+gem 'turbolinks', '~> 5'
 
-#Serialization
-gem 'jsonapi-serializer'
+# Use Redis adapter to run Action Cable in production
+# gem 'redis', '~> 4.0'
 
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier'
-gem 'execjs'
-gem 'therubyracer'
+# Use Active Model has_secure_password
+# gem 'bcrypt', '~> 3.1.7'
 
-# NO SQL background process
-gem 'resque'
-gem 'resque-scheduler'
-
-gem 'httparty', '~> 0.13.7'
-
-#Authentication
-gem 'devise'
-
-# Active Storage Validations
-gem 'activestorage-validator'
-
-# Use ActiveStorage variant
-gem 'mini_magick', '~> 4.8'
+# Use Active Storage variant
+# gem 'image_processing', '~> 1.2'
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.1.0', require: false
-
-#Soft delete
-gem 'paranoia'
-
-#Cpf formatter
-gem 'cpf_cnpj', '~> 0.2.1'
-
-#Enum
+gem 'bootsnap', '>= 1.4.2', require: false
 gem 'enumerate_it'
 
-gem 'cancancan', '~> 2.0'
-gem 'validate_url'
-gem 'time_difference'
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
+gem 'rack-attack'
+gem 'rack-cors'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem 'listen', '>= 3.0.5', '< 3.2'
-end
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
-group :test do
-  gem 'minitest'
-  gem 'minitest-reporters'
-  gem 'shoulda-context'
-  gem 'shoulda', '3.5'
-  gem 'mocha'
-
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
   gem 'faker'
-  gem 'cpf_faker'
-  gem 'company_data_faker'
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+
+  gem 'reek'
+  gem 'rubocop'
+  gem 'rubycritic', require: false
+  gem 'rufo'
+  gem 'simplecov', require: false
 end
 
-gem 'caxlsx'
-gem 'caxlsx_rails'
+group :development do
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
+end
 
-#font-awesome
-gem 'font-awesome-rails'
+# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+gem 'devise_token_auth'
+gem 'fast_jsonapi'
+gem 'will_paginate'
+gem "paranoia"
+
+gem 'httparty'
+
+gem 'angular_base_material', git: 'git@gitlab.velow.com.br:modules/angular_base_material.git', branch: 'building_2021'
+# gem 'angular_base_material', path: '../angular_base_material'
+
+gem 'resque'
+gem 'resque-scheduler'

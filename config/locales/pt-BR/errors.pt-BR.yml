@@ -1,0 +1,12 @@
+pt-BR:
+  errors:
+    messages:
+      attributes_not_well_formatted: Atributos não bem formatados.
+      bad_request: Requisição inválida.
+      parameter_missing: 'Parâmetro faltando: %{parameter}.'
+      not_found: Ação não encontrada.
+      record_not_found: '%{record} não encontrado.'
+      record_not_found_female: '%{record} não encontrada.'
+      unprocessable_entity: Não foi possível processar requisição.
+      internal_server_error: Erro interno. Por favor, entre em contato com o suporte.
+      cancan_access_denied: Você não possui permissão.

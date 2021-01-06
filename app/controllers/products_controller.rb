@@ -1,74 +1,85 @@
-class ProductsController < ::ApplicationController
-  before_action :set_product, only: [:show, :update, :destroy]
+# frozen_string_literal: true
 
+class ProductsController < ApplicationController
+  # before_action :authenticate_user!
+  before_action :set_product
+  before_action :set_product, only: %i[show update destroy recover]
+
+  # GET /products
   def index
-    @products = ::Product.all
+    @products = Product.all_fields
 
-    render json: ProductIndexSerializer.new(@products).serializable_hash.to_json
+    @products = apply_filters(@products,
+                              :active_boolean,
+                              :by_derivation,
+                              :by_name)
+
+    # index_render_json(@products, ::ProductSerializer, 'products')
+    render template: "products/index"
   end
 
+  # GET /products/1
   def show
-    render json: ProductIndexSerializer.new(@product).serializable_hash.to_json
+    render_json(@product, ::ProductSerializer, 'product')
   end
 
+  # POST /products
   def create
-    @product = ::Product.new(product_create_params)
+    @product = Product.new(product_params)
 
     if @product.save
-      render_json_message({:success => t('.success')}, 201, {id: @product.id})
-      render json: Panko::ArraySerializer.new(users, each_serializer: UserSerializer).to_json
+      render_json(Product.all_fields.find(@product.id), ::ProductSerializer, 'product')
     else
-      render_json_message({:errors => @product.errors.messages}, 422)
+      render json: {errors: @product.errors}, status: :unprocessable_entity
     end
   end
 
+  # PATCH/PUT /products/1
   def update
-    if @product.update(product_update_params)
-      render_json_message({success: t('.success')}, 200)
+    if @product.update(product_params)
+      render_json(@product, ::ProductSerializer, 'product')
     else
-      render_json_message({errors: @product.errors.messages}, 422)
+      render json: {errors: @product.errors}, status: :unprocessable_entity
     end
   end
 
+  # DELETE /products/1
   def destroy
     if @product.destroy
-      render_json_message({:success => t('.success')}, 200)
+      render_json(@product, ::ProductSerializer, 'product')
     else
-      render_json_message({:errors => @product.errors.messages}, 422)
+      render json: {errors: @product.errors}, status: :unprocessable_entity
     end
   end
 
   def recover
-    @product = ::Product.with_deleted.find(params[:id])
-
     if @product.restore
-      render_json_message({:success => t('.success')}, 200)
+      render_json(@product, ::ProductSerializer, 'product')
     else
-      render_json_message({:errors => @product.errors.messages}, 422)
+      render json: {errors: @product.errors}, status: :unprocessable_entity
     end
   end
 
   private
 
-  def product_params
-    params.require(:product).permit(
-        :code,
-        :name,
-        :description,
-        :cod_emp,
-        :food_restrictions => []
-    )
+  def set_product
+    @product = Product.all_fields.find(params[:id])
   end
 
   # def product_create_params
-  #   product_params.merge(created_by_id: @current_user.id, cod_emp: @current_user&.cod_emp)
+  #   product_params.merge(created_by_id: @current_user.id)
   # end
   #
   # def product_update_params
-  #   product_params.merge(updated_by_id: @current_user.id, cod_emp: @current_user&.cod_emp)
+  #   product_params.merge(updated_by_id: @current_user.id)
   # end
 
-  def set_product
-    @product = ::Product.all.find(params[:id])
+  # Only allow a trusted parameter "white list" through.
+  def product_params
+    params.require(:product).permit(:name,
+                                    :code,
+                                    :description,
+                                    :derivation,
+                                    :price)
   end
 end

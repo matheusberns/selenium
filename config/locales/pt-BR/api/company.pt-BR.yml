@@ -1,0 +1,12 @@
+pt-BR:
+  product:
+    show:
+      success: Produto encontrado com sucesso
+    create:
+      success: Produto cadastrado com sucesso
+    update:
+      success: Produto atualizado com sucesso
+    destroy:
+      success: Produto removido com sucesso
+    recover:
+      success: Produto restaurado com sucesso

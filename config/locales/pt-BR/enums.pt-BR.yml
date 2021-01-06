@@ -1,0 +1,8 @@
+pt-BR:
+  enumerations:
+    derivation_type:
+      shirt_p: P
+      shirt_m: M
+      shirt_g: G
+      shirt_gg: GG
+      shirt_eg: EG

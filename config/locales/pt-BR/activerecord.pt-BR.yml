@@ -1,0 +1,284 @@
+pt-BR:
+  attributes:
+    active: Ativo
+    name: Nome
+    created_at: Data de criação
+    updated_at: Data de alteração
+    deleted_at: Data de exclusão
+  activerecord:
+    models:
+      account:
+        one: &account Conta
+        other: &accounts Contas
+      archive:
+        one: &archive Arquivo
+        other: &archives Arquivos
+      city:
+        one: &city Cidade
+        other: &cities Cidades
+      company:
+        one: &company Empresa
+        other: &companies Empresas
+      client:
+        one: &client Cliente
+        other: &clients Clientes
+      client_file:
+        one: &client_file Arquivo do cliente
+        other: &client_files Arquivos do cliente
+      financial:
+        one: &financial Financeiro
+        other: &financials Financeiros
+      follow_up:
+        one: &follow_up Processo
+        other: &follow_ups Processos
+      follow_up_category:
+        one: &follow_up_category Categoria do processo
+        other: &follow_up_categories Categorias do processo
+      follow_ups_category:
+        one: &follow_ups_category Categoria/processo
+        other: &follow_ups_categories Categorias/processos
+      follow_up_file:
+        one: &follow_up_file Arquivo do processo
+        other: &follow_up_files Arquivos do processo
+      follow_up_item:
+        one: &follow_up_item Item do processo
+        other: &follow_up_items Itens do processo
+      integration:
+        one: &integration Integração
+        other: &integrations Integrações
+      notification:
+        one: &notification Notificação
+        other: &notifications Notificações
+      state:
+        one: &state Estado
+        other: &states Estados
+      user:
+        one: &user Usuário
+        other: &users Usuários
+      user_client:
+        one: &user_client Usuário/Client
+        other: &user_clients Usuários/Clients
+    attributes:
+      account:
+        name: Nome
+        email: E-mail
+        phone: Telefone
+      archive:
+        name: Nome
+      city:
+        name: Nome
+      company:
+        account: *account
+        account_id: *account
+        cnpj: Cnpj
+        name: Nome
+        nick_name: Nome Fantasia
+        zipcode: Cep
+        street: Rua
+        number: Número
+        district: Bairro
+        complement: Complemento
+        state: *state
+        state_id: *state
+        city: *city
+        city_id: *city
+        email: E-mail
+        phone: Telefone
+        host: Host
+        database_type: Tipo do banco de dados
+        database: Banco de dados
+        username: Nome de usuário
+        password: Senha
+      client:
+        account: *account
+        account_id: *account
+        document: Documento
+        document_type: Tipo de documento
+        name: Razão Social
+        nick_name: Nome Fantasia
+        zipcode: Cep
+        street: Rua
+        number: Número
+        district: Bairro
+        complement: Complemento
+        email: E-mail
+        phone: Telefone
+      client_file:
+        account: *account
+        account_id: *account
+        company: *company
+        company_id: *company
+        client: *client
+        client_id: *client
+        erp_code: Código ERP
+        document_type_code: Código tipo do documento
+        document_type_description: Descrição tipo do documento
+        original_document_name: Nome original do arquivo
+        url_storage: URL
+      financial:
+        shipment_number: Número do embarque
+        client: *client
+        client_id: *client
+        company: *company
+        company_id: *company
+        account: *account
+        account_id: *account
+        shipment_year: Ano de embarque
+        shipment_date: Data de embarque
+        landing_date: Data de desembarque
+        final_date_payment: Data limite de pagamento
+        coin: Moeda
+        situation: Situação
+        invoice_value: Valor Invoice
+        anticipated_value: Valor antecipado
+        balance: Saldo
+      follow_up:
+        account: *account
+        account_id: *account
+        company: *company
+        company_id: *company
+        client: *client
+        client_id: *client
+        finished: Finalizado?
+        enterprise: Empresa
+        dispatcher: Despachante
+        process: Processo
+        shipment_year: Ano embarque
+        shipment_number: Numero embarque
+        transport_type: Tipo transporte
+        supplier: Fornecedor
+        category: Categoria
+        containers: Containers
+        packages: Embalagens
+        vehicle: Veiculo
+        shipment_estimate: Previsao embarque
+        shipment_performed: Realizaçao embarque
+        landing_estimate: Previsao desembarque
+        landing_performed: Realizaçao desembarque
+        port: Porto
+        enclosure: Recinto
+        il_approval: Deferimento Licensa importaçao
+        canal: Canal
+        order: Ordem
+        cargo_agent: Agente de carga
+        international_transporter: Transportadora internacional
+        shipment_local: Local embarque
+        freight_type: Tipo frete
+        seller: Vendedor(a)
+        operator: Operador(a)
+        invoices: Invoices
+        bill_of_transport: Conhecimento(BIL)
+        observations: Observaçoes
+        subcategory: Subcategorias
+        quantity: Quantidade
+        nfe: NF-e
+        nfe_date: Data da NF-e
+        import_confirmation: Confirmaçao de importaçao
+        receipt: Recebimento
+        readiness_estimate: Previsao prontidao
+        readiness_performed: Realizaçao prontidao
+        oc: OS
+        document_status: Status dos documentos
+        cargo_presence: Presença de carga
+        status: Status
+        import_declaration_number: Declaraçao de importaçao
+        registration_date: Data de registro
+        ncm: NCM
+        erp_code: ERP Code
+      follow_up_category:
+        account: *account
+        account_id: *account
+        company: *company
+        company_id: *company
+        name: Nome
+      follow_ups_category:
+        account: *account
+        account_id: *account
+        company: *company
+        company_id: *company
+        follow_up: *follow_up
+        follow_up_id: *follow_up
+        follow_up_category: *follow_up_category
+        follow_up_category_id: *follow_up_category
+      follow_up_file:
+        account: *account
+        account_id: *account
+        company: *company
+        company_id: *company
+        follow_up: *follow_up
+        follow_up_id: *follow_up
+        erp_code: Código ERP
+        document_type_code: Código tipo do documento
+        document_type_description: Descrição tipo do documento
+        original_document_name: Nome original do arquivo
+        url_storage: URL
+      follow_up_item:
+        account: *account
+        account_id: *account
+        company: *company
+        company_id: *company
+        follow_up: *follow_up
+        follow_up_id: *follow_up
+        code: Código
+        description: Descrição
+        ncm: NCM
+        li_necessity: Necessidade LI
+        invoice: Invoice
+        proforma: Proforma
+      integration:
+        name: Nome
+        auth_key: Chave de autorização
+        app_type: Tipo de aplicação
+      notification:
+        message: Mensagem
+        account: *account
+        account_id: *account
+        company: *company
+        company_id: *company
+      state:
+        uf: Unidade Federal
+        name: Nome
+        country: País
+      user:
+        profile: Perfil
+        provider: Provedor
+        nick_name: Sobrenome
+        encrypted_password: Senha criptografada
+        reset_password_token: Token de recuperação de senha
+        reset_password_sent_at: Recuperação de senha enviada em
+        allow_password_change: Permitir alteração de senha
+        sign_in_count: Contagem de logins
+        current_sign_in_at: Login atual em
+        last_sign_in_at: Último login em
+        current_sign_in_ip: IP da sessão atual
+        last_sign_in_ip: IP do último login
+        confirmation_token: Token de confirmação
+        confirmed_at: Confirmado em
+        confirmation_sent_at: Confirmação enviada em
+        unconfirmed_email: E-mail não confirmado
+        name: Nome
+        nickname: Sobrenome
+        image: Imagem
+        email: E-mail
+        tokens: Tokens
+        account_id: *account
+        account: *account
+        company: *company
+        company_id: *company
+        erp_code: Código do ERP
+        company_name: Nome da Empresa
+        cell_phone: Número celular
+        notify_by_email: Notificar por email
+        notify_by_message: Notificar por mensagem
+      user_client:
+        user: *user
+        user_id: *user
+        client: *client
+        client_id: *client
+    errors:
+      models:
+        action:
+          attributes:
+            base:
+              uniqueness_of_client_file_erp_code: já existe um arquivo com esse código ERP
+              uniqueness_of_client_category_name: já existe uma categoria com esse nome

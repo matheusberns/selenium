@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ProductSerializer < TraceabilitySerializer
   attribute :name, :code, :description, :derivation, :price
 

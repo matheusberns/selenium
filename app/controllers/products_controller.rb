@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ProductsController < ApplicationController
   # before_action :authenticate_user!
   before_action :set_product
@@ -52,6 +50,7 @@ class ProductsController < ApplicationController
     end
   end
 
+  #TODO Implementar recover com soft delete
   def recover
     if @product.restore
       render_json(@product, ::ProductSerializer, 'product')
@@ -74,7 +73,6 @@ class ProductsController < ApplicationController
   #   product_params.merge(updated_by_id: @current_user.id)
   # end
 
-  # Only allow a trusted parameter "white list" through.
   def product_params
     params.require(:product).permit(:name,
                                     :code,
